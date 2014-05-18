@@ -1,6 +1,7 @@
 <?php
 require 'PHPMailer/class.phpmailer.php';
 require_once "XML/RSS.php";
+
 date_default_timezone_set('America/Denver');
 //echo "running cl script";
 $searchTerms = array('');

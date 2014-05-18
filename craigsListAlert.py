@@ -14,6 +14,8 @@ page  = response.read()
 dom   = BeautifulSoup(page)
 items = dom.find_all("item");
 
+
+#parse the title for a price
 def getPrice(item):
 	
 	text  = item.title.get_text()
@@ -24,8 +26,18 @@ def getPrice(item):
 			rawPrice = text[ index + 8: index + numEnd ] 
 			return int(rawPrice)
 
+#look for "no pets"  or "Pets: No"
 def getPetPolicy(item):
-	print "o"
+	text  = item.title.get_text()
+	if text.find('no pets') >= 0:
+		print "no pets"
+		return False
+	if text.find('Pets: No') >= 0:
+		return "pets: no"
+		return False
+
+	return True
 
 for item in items:
 	price = getPrice(item)
+	pets = getPetPolicy(item)
